@@ -6,10 +6,13 @@ public abstract class Aviapark {
     protected int distance;
 
 
+
     public Aviapark(int year, int capacity, int seats, int distance) {
         this.year = year;
         this.capacity = capacity;
         this.seats = seats;
         this.distance = distance;
     }
+
+
 }
