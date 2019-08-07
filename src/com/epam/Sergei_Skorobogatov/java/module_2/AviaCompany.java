@@ -7,10 +7,6 @@ import com.epam.Sergei_Skorobogatov.java.module_2.Quadrocopters.Xplorer1;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-//ПЕРЕДЕЛАТЬ: 1) цикл while, чтобы массивы не попадали в него
-// 2) в мэин методе рефакторинг циклов иф
-// 3) отлавливать ошибку с вводом чего-то другого кроме чисел
-
 
 public class AviaCompany{
     public static void main(String[] args) {
