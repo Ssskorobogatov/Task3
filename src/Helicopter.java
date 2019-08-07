@@ -1,8 +1,8 @@
-public class Helicopter extends Aviapark {
+public class Helicopter extends Fleet {
     public Helicopter(int year, int capacity, int seats, int distance) {
         super(year, capacity, seats, distance);
     }
     public void descriptionOfHelicopter(){
-        System.out.println("Parameters of Helicopter: " + "Production year " + this.year + "; " + "capacity " + this.capacity + "; " + "seats " + this.seats + "; " + "distance " + this.distance + ".");
+        System.out.println("Характеристики вертолета: " + "Год производства " + this.year + "; " + "грузоподъемность " + this.capacity + " кг; " + "количество пассажирских мест " + this.seats + " чел; " + "дальность полета " + this.distance + " км.");
     }
 }
