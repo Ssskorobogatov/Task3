@@ -29,14 +29,20 @@ public class AviaCompany {
 
         while (true) {
             try {
-                fleet1.messageWithVariants();
+                System.out.println("1 - общая информация летательных аппаратов;");
+                System.out.println("2 - общая вместимость пассажиров;");
+                System.out.println("3 - общая грузоподъемность;");
+                System.out.println("4 - сортировка летательных аппаратов по дальности полета;");
+                System.out.println("5 - поиск летательного аппарата по заданным параметрам максимальной дальности полета;");
+                System.out.println("6 - для выхода из программы.");
+                System.out.println("Пожалуйста, выберите номер...");
                 int number = scanner.nextInt();
                 if (number < 7 && number > 0) {
                     switch (number) {
                         case 1:
-                            boeing737.descriptionOfBoeing737();
-                            bell205.descriptionOfBell205();
-                            xplorer1.descriptionOfXplorer1();
+                            boeing737.showInfo();
+                            bell205.showInfo();
+                            xplorer1.showInfo();
                             break;
                         case 2:
                             fleet1.sumOfSeats();
@@ -60,7 +66,8 @@ public class AviaCompany {
                     System.out.println();
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Вы ввели не число");
+                System.out.println("Вы ввели не число, перезапустите программу");
+                break;
 
 
             }
