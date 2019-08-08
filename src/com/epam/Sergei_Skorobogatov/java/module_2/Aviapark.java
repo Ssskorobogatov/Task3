@@ -2,6 +2,7 @@ package com.epam.Sergei_Skorobogatov.java.module_2;
 
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class Aviapark {
@@ -44,5 +45,37 @@ public class Aviapark {
         System.out.println("Пожалуйста, выберите номер...");
     }
 
+    public void searchByDistance() {
+        int num1 = getInt();
+        int num2 = getInt();
+        boolean Cap = false;
 
+        for (int i = 0; i < fleet.length; i++) {
+            if (num1 <= fleet[i].distance && num2 >= fleet[i].distance) {
+                System.out.println(fleet[i].mark + " с дальностью полета " + fleet[i].distance + " км");
+                Cap = true;
+            }
+
+
+        }
+        if (Cap == false) {
+            System.out.println("Нет подходящих вариантов");
+        }
+    }
+
+
+    public int getInt() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите дистанцию полета:");
+        int num;
+        if (scan.hasNextInt()) {
+            num = scan.nextInt();
+        } else {
+            System.out.println("Ошибка при вводе числа. Повторите попытку");
+            scan.next();
+            num = getInt();
+        }
+        return num;
+    }
 }
+

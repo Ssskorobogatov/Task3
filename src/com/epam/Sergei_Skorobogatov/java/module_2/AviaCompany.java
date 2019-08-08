@@ -48,7 +48,7 @@ public class AviaCompany {
                             fleet1.sortDistance();
                             break;
                         case 5:
-                            // fleet1.searchByDistance();
+                            fleet1.searchByDistance();
                             break;
                         case 6:
                             return;
