@@ -1,7 +1,8 @@
 package com.epam.Sergei_Skorobogatov.java.module_2;
 
+
 import java.util.Arrays;
-import java.util.Scanner;
+
 
 public class Aviapark {
     Fleet[] fleet;
@@ -32,5 +33,16 @@ public class Aviapark {
             System.out.println(fleet[i].mark + " с максимальной дальностью полета " + fleet[i].distance);
         }
     }
+
+    public void messageWithVariants() {
+        System.out.println("1 - общая информация летательных аппаратов;");
+        System.out.println("2 - общая вместимость пассажиров;");
+        System.out.println("3 - общая грузоподъемность;");
+        System.out.println("4 - сортировка летательных аппаратов по дальности полета;");
+        System.out.println("5 - поиск летательного аппарата по заданным параметрам максимальной дальности полета;");
+        System.out.println("6 - для выхода из программы.");
+        System.out.println("Пожалуйста, выберите номер...");
+    }
+
 
 }

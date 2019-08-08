@@ -4,6 +4,7 @@ import com.epam.Sergei_Skorobogatov.java.module_2.Aircrafts.Boeing737;
 import com.epam.Sergei_Skorobogatov.java.module_2.Helicopters.Bell205;
 import com.epam.Sergei_Skorobogatov.java.module_2.Quadrocopters.Xplorer1;
 
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -26,18 +27,11 @@ public class AviaCompany {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("1 - общая информация летательных аппаратов;");
-        System.out.println("2 - общая вместимость пассажиров;");
-        System.out.println("3 - общая грузоподъемность;");
-        System.out.println("4 - сортировка летательных аппаратов по дальности полета;");
-        System.out.println("5 - поиск летательного аппарата по заданным параметрам максимальной дальности полета;");
-        System.out.println("Пожалуйста, выберите номер...");
-
-
-        try {
-            while (true) {
+        while (true) {
+            try {
+                fleet1.messageWithVariants();
                 int number = scanner.nextInt();
-                if (number < 6 && number > 0) {
+                if (number < 7 && number > 0) {
                     switch (number) {
                         case 1:
                             boeing737.descriptionOfBoeing737();
@@ -56,17 +50,21 @@ public class AviaCompany {
                         case 5:
                             // fleet1.searchByDistance();
                             break;
+                        case 6:
+                            return;
                     }
+                    System.out.println();
+                    System.out.println();
                 } else {
                     System.out.println("Вы ввели неправильный номер, попробуйте снова");
+                    System.out.println();
                 }
-            }
-        } catch (InputMismatchException e) {
-            System.out.println("Вы ввели не число, повторите попытку.");
-        }
-        System.out.println();
-        System.out.println();
+            } catch (InputMismatchException e) {
+                System.out.println("Вы ввели не число");
 
+
+            }
+        }
     }
 }
 
