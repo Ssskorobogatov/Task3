@@ -28,6 +28,7 @@ public class Aviapark {
         System.out.println("Общее количество мест составляет: " + sum + " чел.");
     }
 
+
     public void sortDistance() {
         Arrays.sort(fleet);
         for (int i = 0; i < fleet.length; i++) {
