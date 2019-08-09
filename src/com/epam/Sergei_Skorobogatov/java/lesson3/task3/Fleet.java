@@ -1,4 +1,4 @@
-package com.epam.Sergei_Skorobogatov.java.module_2;
+package com.epam.Sergei_Skorobogatov.java.lesson3.task3;
 
 public abstract class Fleet implements Comparable {
 

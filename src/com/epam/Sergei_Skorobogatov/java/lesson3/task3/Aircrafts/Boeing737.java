@@ -1,7 +1,7 @@
-package com.epam.Sergei_Skorobogatov.java.module_2.Aircrafts;
+package com.epam.Sergei_Skorobogatov.java.lesson3.task3.Aircrafts;
 
-import com.epam.Sergei_Skorobogatov.java.module_2.Fleet;
-import com.epam.Sergei_Skorobogatov.java.module_2.Info;
+import com.epam.Sergei_Skorobogatov.java.lesson3.task3.Fleet;
+import com.epam.Sergei_Skorobogatov.java.lesson3.task3.Info;
 
 public class Boeing737 extends Fleet implements Info {
 

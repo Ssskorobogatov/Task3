@@ -1,10 +1,12 @@
-package com.epam.Sergei_Skorobogatov.java.module_2;
+package com.epam.Sergei_Skorobogatov.java.lesson3.task3;
 
-import com.epam.Sergei_Skorobogatov.java.module_2.Aircrafts.Boeing737;
-import com.epam.Sergei_Skorobogatov.java.module_2.Helicopters.Bell205;
-import com.epam.Sergei_Skorobogatov.java.module_2.Quadrocopters.Xplorer1;
+import com.epam.Sergei_Skorobogatov.java.lesson3.task3.Aircrafts.Boeing737;
+import com.epam.Sergei_Skorobogatov.java.lesson3.task3.Helicopters.Bell205;
+import com.epam.Sergei_Skorobogatov.java.lesson3.task3.Quadrocopters.Xplorer1;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -13,9 +15,11 @@ public class AviaCompany {
     public static void main(String[] args) {
 
 
+
+
         Boeing737 boeing737 = new Boeing737(1987, 10000, 150, 2600, "Boeing-737");
-        Bell205 bell205 = new Bell205(2000, 2000, 8, 700, "Bell-205");
-        Xplorer1 xplorer1 = new Xplorer1(2015, 20, 0, 10, "Xplorer-1");
+        Bell205 bell205 = new Bell205(2000, -2000, 8, 700, "Bell-205");
+        Xplorer1 xplorer1 = new Xplorer1(2015, 20, -2, -10, "Xplorer-1");
 
         Fleet[] fleet = new Fleet[3];
         fleet[0] = boeing737;
@@ -26,6 +30,20 @@ public class AviaCompany {
         Aviapark fleet1 = new Aviapark(fleet);
 
         Scanner scanner = new Scanner(System.in);
+
+        File file = new File("test"); // создание файла для Checked exception
+        try {
+            Scanner scan = new Scanner(file); // попытка прочитать данные из файла
+        } catch (FileNotFoundException e) { // ловим Exception
+            e.printStackTrace();
+
+        } finally {
+            System.out.println("Файл не был найден!");
+            System.out.println();
+            System.out.println();
+        }
+
+
 
         while (true) {
             try {
@@ -68,8 +86,6 @@ public class AviaCompany {
             } catch (InputMismatchException e) {
                 System.out.println("Вы ввели не число, перезапустите программу");
                 break;
-
-
             }
         }
     }
