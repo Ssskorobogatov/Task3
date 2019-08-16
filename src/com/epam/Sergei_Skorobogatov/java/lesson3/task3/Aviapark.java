@@ -1,12 +1,13 @@
-package com.epam.Sergei_Skorobogatov.java.lesson3.task3;
+package com.epam.Sergei_Skorobogatov.java.module_2;
 
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Scanner;
 
 
-public class Aviapark {
+public class Aviapark implements Serializable {
     Fleet[] fleet;
 
     public Aviapark(Fleet[] fleet) {
@@ -17,8 +18,8 @@ public class Aviapark {
         int sum = 0;
         for (int i = 0; i < fleet.length; i++) {
             try {
-                if (fleet[i].capacity < 0) throw new IOException("Грузоподъемность не может быть отрицательной!");
-            } catch (IOException e) {                                                                                   // catch для отрицательных значений capacity
+                if (fleet[i].capacity < 0) throw new MyException("Грузоподъемность не может быть отрицательной!");
+            } catch (MyException e) {                                                                                   // созданный мной класс MyException для отрицательных значений capacity
                 e.printStackTrace();
             }
             sum += fleet[i].capacity;
