@@ -1,93 +1,97 @@
-package com.epam.Sergei_Skorobogatov.java.lesson3.task3;
-
-import com.epam.Sergei_Skorobogatov.java.lesson3.task3.Aircrafts.Boeing737;
-import com.epam.Sergei_Skorobogatov.java.lesson3.task3.Helicopters.Bell205;
-import com.epam.Sergei_Skorobogatov.java.lesson3.task3.Quadrocopters.Xplorer1;
+package com.epam.Sergei_Skorobogatov.java.module_2;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.InputMismatchException;
+import UncheckedExceptions.FirstException;
+import UncheckedExceptions.MyException;
+import UncheckedExceptions.SecondException;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Scanner;
 
 
-public class AviaCompany {
-    public static void main(String[] args) {
+public class Aviapark implements Serializable {
+    Fleet[] fleet;
 
+    public Aviapark(Fleet[] fleet) {
+        this.fleet = fleet;
+    }
 
-
-
-        Boeing737 boeing737 = new Boeing737(1987, 10000, 150, 2600, "Boeing-737");
-        Bell205 bell205 = new Bell205(2000, -2000, 8, 700, "Bell-205");
-        Xplorer1 xplorer1 = new Xplorer1(2015, 20, -2, -10, "Xplorer-1");
-
-        Fleet[] fleet = new Fleet[3];
-        fleet[0] = boeing737;
-        fleet[1] = bell205;
-        fleet[2] = xplorer1;
-
-
-        Aviapark fleet1 = new Aviapark(fleet);
-
-        Scanner scanner = new Scanner(System.in);
-
-        File file = new File("test"); // создание файла для Checked exception
-        try {
-            Scanner scan = new Scanner(file); // попытка прочитать данные из файла
-        } catch (FileNotFoundException e) { // ловим Exception
-            e.printStackTrace();
-
-        } finally {
-            System.out.println("Файл не был найден!");
-            System.out.println();
-            System.out.println();
-        }
-
-
-
-        while (true) {
+    public void sumOfCapacity() {
+        int sum = 0;
+        for (int i = 0; i < fleet.length; i++) {
             try {
-                System.out.println("1 - общая информация летательных аппаратов;");
-                System.out.println("2 - общая вместимость пассажиров;");
-                System.out.println("3 - общая грузоподъемность;");
-                System.out.println("4 - сортировка летательных аппаратов по дальности полета;");
-                System.out.println("5 - поиск летательного аппарата по заданным параметрам максимальной дальности полета;");
-                System.out.println("6 - для выхода из программы.");
-                System.out.println("Пожалуйста, выберите номер...");
-                int number = scanner.nextInt();
-                if (number < 7 && number > 0) {
-                    switch (number) {
-                        case 1:
-                            boeing737.showInfo();
-                            bell205.showInfo();
-                            xplorer1.showInfo();
-                            break;
-                        case 2:
-                            fleet1.sumOfSeats();
-                            break;
-                        case 3:
-                            fleet1.sumOfCapacity();
-                            break;
-                        case 4:
-                            fleet1.sortDistance();
-                            break;
-                        case 5:
-                            fleet1.searchByDistance();
-                            break;
-                        case 6:
-                            return;
-                    }
-                    System.out.println();
-                    System.out.println();
-                } else {
-                    System.out.println("Вы ввели неправильный номер, попробуйте снова");
-                    System.out.println();
-                }
-            } catch (InputMismatchException e) {
-                System.out.println("Вы ввели не число, перезапустите программу");
-                break;
+                if (fleet[i].capacity < 0) throw new MyException("Грузоподъемность не может быть отрицательной!");
+            } catch (MyException e) {                                                                                   // созданный мной класс MyException для отрицательных значений capacity
+                e.printStackTrace();
             }
+            sum += fleet[i].capacity;
+        }
+        System.out.println("Общая грузоподъемность составляет: " + sum + " кг.");
+    }
+
+    public void sumOfSeats() throws FirstException, SecondException {           // multicatch
+        int sum = 0;
+        for (int i = 0; i < fleet.length; i++) {
+            sum += fleet[i].seats;
+            System.out.println("Общее количество мест составляет: " + sum + " чел.");
+        }
+        if (sum < 0) {throw new FirstException();}
+        if (sum == 0) {throw new SecondException();}
+    }
+
+
+    public void sortDistance() {
+        Arrays.sort(fleet);
+        for (int i = 0; i < fleet.length; i++) {
+            try {
+                if (fleet[i].distance < 0 ) throw new IOException("Дальность полета не может быть отрицательной!!");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(fleet[i].mark + " с максимальной дальностью полета " + fleet[i].distance);
         }
     }
-}
 
+
+    public void searchByDistance() {
+        int num1 = getInt();
+        int num2 = getInt();
+        boolean Cap = false;
+
+        for (int i = 0; i < fleet.length; i++) {
+            try {
+                if (num1 < 0 | num2 < 0){ throw new IOException("Значение не может быть отрицательным!"); // catch для отрицательных значений
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                System.out.println("Пожалуйста, используйте только положительные значения");
+                System.out.println();
+            }
+            if (num1 <= fleet[i].distance && num2 >= fleet[i].distance) {
+                System.out.println(fleet[i].mark + " с дальностью полета " + fleet[i].distance + " км");
+                Cap = true;
+            }
+        }
+        if (Cap == false) {
+            System.out.println("Нет подходящих вариантов");
+        }
+    }
+
+
+    public int getInt() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите дистанцию полета:");
+        int num;
+        if (scan.hasNextInt()) {
+            num = scan.nextInt();
+        } else {
+            System.out.println("Ошибка при вводе числа. Повторите попытку");
+            scan.next();
+            num = getInt();
+        }
+        return num;
+    }
+}
